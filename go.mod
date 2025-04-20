@@ -1,6 +1,6 @@
-module github.com/go-kratos/kratos-layout
+module github.com/wyuhsin/web-template-go
 
-go 1.21
+go 1.22.6
 
 toolchain go1.22.6
 
