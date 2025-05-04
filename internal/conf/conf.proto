@@ -21,8 +21,21 @@ message Server {
     string addr = 2;
     google.protobuf.Duration timeout = 3;
   }
+  message RabbitMQ { string addr = 1; }
+
+  message Websocket {
+    string addr = 1;
+    string path = 2;
+    google.protobuf.Duration timeout = 3;
+  }
+
+  message MQTT { string addr = 1; }
+
   HTTP http = 1;
   GRPC grpc = 2;
+  RabbitMQ rabbitmq = 3;
+  Websocket ws = 4;
+  MQTT mqtt = 5;
 }
 
 message Data {

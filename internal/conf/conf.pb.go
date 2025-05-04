@@ -78,6 +78,9 @@ type Server struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Http          *Server_HTTP           `protobuf:"bytes,1,opt,name=http,proto3" json:"http,omitempty"`
 	Grpc          *Server_GRPC           `protobuf:"bytes,2,opt,name=grpc,proto3" json:"grpc,omitempty"`
+	Rabbitmq      *Server_RabbitMQ       `protobuf:"bytes,3,opt,name=rabbitmq,proto3" json:"rabbitmq,omitempty"`
+	Ws            *Server_Websocket      `protobuf:"bytes,4,opt,name=ws,proto3" json:"ws,omitempty"`
+	Mqtt          *Server_MQTT           `protobuf:"bytes,5,opt,name=mqtt,proto3" json:"mqtt,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -122,6 +125,27 @@ func (x *Server) GetHttp() *Server_HTTP {
 func (x *Server) GetGrpc() *Server_GRPC {
 	if x != nil {
 		return x.Grpc
+	}
+	return nil
+}
+
+func (x *Server) GetRabbitmq() *Server_RabbitMQ {
+	if x != nil {
+		return x.Rabbitmq
+	}
+	return nil
+}
+
+func (x *Server) GetWs() *Server_Websocket {
+	if x != nil {
+		return x.Ws
+	}
+	return nil
+}
+
+func (x *Server) GetMqtt() *Server_MQTT {
+	if x != nil {
+		return x.Mqtt
 	}
 	return nil
 }
@@ -298,6 +322,154 @@ func (x *Server_GRPC) GetTimeout() *durationpb.Duration {
 	return nil
 }
 
+type Server_RabbitMQ struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Addr          string                 `protobuf:"bytes,1,opt,name=addr,proto3" json:"addr,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Server_RabbitMQ) Reset() {
+	*x = Server_RabbitMQ{}
+	mi := &file_conf_conf_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Server_RabbitMQ) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Server_RabbitMQ) ProtoMessage() {}
+
+func (x *Server_RabbitMQ) ProtoReflect() protoreflect.Message {
+	mi := &file_conf_conf_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Server_RabbitMQ.ProtoReflect.Descriptor instead.
+func (*Server_RabbitMQ) Descriptor() ([]byte, []int) {
+	return file_conf_conf_proto_rawDescGZIP(), []int{1, 2}
+}
+
+func (x *Server_RabbitMQ) GetAddr() string {
+	if x != nil {
+		return x.Addr
+	}
+	return ""
+}
+
+type Server_Websocket struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Addr          string                 `protobuf:"bytes,1,opt,name=addr,proto3" json:"addr,omitempty"`
+	Path          string                 `protobuf:"bytes,2,opt,name=path,proto3" json:"path,omitempty"`
+	Timeout       *durationpb.Duration   `protobuf:"bytes,3,opt,name=timeout,proto3" json:"timeout,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Server_Websocket) Reset() {
+	*x = Server_Websocket{}
+	mi := &file_conf_conf_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Server_Websocket) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Server_Websocket) ProtoMessage() {}
+
+func (x *Server_Websocket) ProtoReflect() protoreflect.Message {
+	mi := &file_conf_conf_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Server_Websocket.ProtoReflect.Descriptor instead.
+func (*Server_Websocket) Descriptor() ([]byte, []int) {
+	return file_conf_conf_proto_rawDescGZIP(), []int{1, 3}
+}
+
+func (x *Server_Websocket) GetAddr() string {
+	if x != nil {
+		return x.Addr
+	}
+	return ""
+}
+
+func (x *Server_Websocket) GetPath() string {
+	if x != nil {
+		return x.Path
+	}
+	return ""
+}
+
+func (x *Server_Websocket) GetTimeout() *durationpb.Duration {
+	if x != nil {
+		return x.Timeout
+	}
+	return nil
+}
+
+type Server_MQTT struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Addr          string                 `protobuf:"bytes,1,opt,name=addr,proto3" json:"addr,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Server_MQTT) Reset() {
+	*x = Server_MQTT{}
+	mi := &file_conf_conf_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Server_MQTT) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Server_MQTT) ProtoMessage() {}
+
+func (x *Server_MQTT) ProtoReflect() protoreflect.Message {
+	mi := &file_conf_conf_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Server_MQTT.ProtoReflect.Descriptor instead.
+func (*Server_MQTT) Descriptor() ([]byte, []int) {
+	return file_conf_conf_proto_rawDescGZIP(), []int{1, 4}
+}
+
+func (x *Server_MQTT) GetAddr() string {
+	if x != nil {
+		return x.Addr
+	}
+	return ""
+}
+
 type Data_Database struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Driver        string                 `protobuf:"bytes,1,opt,name=driver,proto3" json:"driver,omitempty"`
@@ -308,7 +480,7 @@ type Data_Database struct {
 
 func (x *Data_Database) Reset() {
 	*x = Data_Database{}
-	mi := &file_conf_conf_proto_msgTypes[5]
+	mi := &file_conf_conf_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -320,7 +492,7 @@ func (x *Data_Database) String() string {
 func (*Data_Database) ProtoMessage() {}
 
 func (x *Data_Database) ProtoReflect() protoreflect.Message {
-	mi := &file_conf_conf_proto_msgTypes[5]
+	mi := &file_conf_conf_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -362,7 +534,7 @@ type Data_Redis struct {
 
 func (x *Data_Redis) Reset() {
 	*x = Data_Redis{}
-	mi := &file_conf_conf_proto_msgTypes[6]
+	mi := &file_conf_conf_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -374,7 +546,7 @@ func (x *Data_Redis) String() string {
 func (*Data_Redis) ProtoMessage() {}
 
 func (x *Data_Redis) ProtoReflect() protoreflect.Message {
-	mi := &file_conf_conf_proto_msgTypes[6]
+	mi := &file_conf_conf_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -426,10 +598,13 @@ const file_conf_conf_proto_rawDesc = "" +
 	"kratos.api\x1a\x1egoogle/protobuf/duration.proto\"]\n" +
 	"\tBootstrap\x12*\n" +
 	"\x06server\x18\x01 \x01(\v2\x12.kratos.api.ServerR\x06server\x12$\n" +
-	"\x04data\x18\x02 \x01(\v2\x10.kratos.api.DataR\x04data\"\xb8\x02\n" +
+	"\x04data\x18\x02 \x01(\v2\x10.kratos.api.DataR\x04data\"\xf2\x04\n" +
 	"\x06Server\x12+\n" +
 	"\x04http\x18\x01 \x01(\v2\x17.kratos.api.Server.HTTPR\x04http\x12+\n" +
-	"\x04grpc\x18\x02 \x01(\v2\x17.kratos.api.Server.GRPCR\x04grpc\x1ai\n" +
+	"\x04grpc\x18\x02 \x01(\v2\x17.kratos.api.Server.GRPCR\x04grpc\x127\n" +
+	"\brabbitmq\x18\x03 \x01(\v2\x1b.kratos.api.Server.RabbitMQR\brabbitmq\x12,\n" +
+	"\x02ws\x18\x04 \x01(\v2\x1c.kratos.api.Server.WebsocketR\x02ws\x12+\n" +
+	"\x04mqtt\x18\x05 \x01(\v2\x17.kratos.api.Server.MQTTR\x04mqtt\x1ai\n" +
 	"\x04HTTP\x12\x18\n" +
 	"\anetwork\x18\x01 \x01(\tR\anetwork\x12\x12\n" +
 	"\x04addr\x18\x02 \x01(\tR\x04addr\x123\n" +
@@ -437,7 +612,15 @@ const file_conf_conf_proto_rawDesc = "" +
 	"\x04GRPC\x12\x18\n" +
 	"\anetwork\x18\x01 \x01(\tR\anetwork\x12\x12\n" +
 	"\x04addr\x18\x02 \x01(\tR\x04addr\x123\n" +
-	"\atimeout\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\atimeout\"\xdd\x02\n" +
+	"\atimeout\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\atimeout\x1a\x1e\n" +
+	"\bRabbitMQ\x12\x12\n" +
+	"\x04addr\x18\x01 \x01(\tR\x04addr\x1ah\n" +
+	"\tWebsocket\x12\x12\n" +
+	"\x04addr\x18\x01 \x01(\tR\x04addr\x12\x12\n" +
+	"\x04path\x18\x02 \x01(\tR\x04path\x123\n" +
+	"\atimeout\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\atimeout\x1a\x1a\n" +
+	"\x04MQTT\x12\x12\n" +
+	"\x04addr\x18\x01 \x01(\tR\x04addr\"\xdd\x02\n" +
 	"\x04Data\x125\n" +
 	"\bdatabase\x18\x01 \x01(\v2\x19.kratos.api.Data.DatabaseR\bdatabase\x12,\n" +
 	"\x05redis\x18\x02 \x01(\v2\x16.kratos.api.Data.RedisR\x05redis\x1a:\n" +
@@ -462,33 +645,40 @@ func file_conf_conf_proto_rawDescGZIP() []byte {
 	return file_conf_conf_proto_rawDescData
 }
 
-var file_conf_conf_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_conf_conf_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_conf_conf_proto_goTypes = []any{
 	(*Bootstrap)(nil),           // 0: kratos.api.Bootstrap
 	(*Server)(nil),              // 1: kratos.api.Server
 	(*Data)(nil),                // 2: kratos.api.Data
 	(*Server_HTTP)(nil),         // 3: kratos.api.Server.HTTP
 	(*Server_GRPC)(nil),         // 4: kratos.api.Server.GRPC
-	(*Data_Database)(nil),       // 5: kratos.api.Data.Database
-	(*Data_Redis)(nil),          // 6: kratos.api.Data.Redis
-	(*durationpb.Duration)(nil), // 7: google.protobuf.Duration
+	(*Server_RabbitMQ)(nil),     // 5: kratos.api.Server.RabbitMQ
+	(*Server_Websocket)(nil),    // 6: kratos.api.Server.Websocket
+	(*Server_MQTT)(nil),         // 7: kratos.api.Server.MQTT
+	(*Data_Database)(nil),       // 8: kratos.api.Data.Database
+	(*Data_Redis)(nil),          // 9: kratos.api.Data.Redis
+	(*durationpb.Duration)(nil), // 10: google.protobuf.Duration
 }
 var file_conf_conf_proto_depIdxs = []int32{
 	1,  // 0: kratos.api.Bootstrap.server:type_name -> kratos.api.Server
 	2,  // 1: kratos.api.Bootstrap.data:type_name -> kratos.api.Data
 	3,  // 2: kratos.api.Server.http:type_name -> kratos.api.Server.HTTP
 	4,  // 3: kratos.api.Server.grpc:type_name -> kratos.api.Server.GRPC
-	5,  // 4: kratos.api.Data.database:type_name -> kratos.api.Data.Database
-	6,  // 5: kratos.api.Data.redis:type_name -> kratos.api.Data.Redis
-	7,  // 6: kratos.api.Server.HTTP.timeout:type_name -> google.protobuf.Duration
-	7,  // 7: kratos.api.Server.GRPC.timeout:type_name -> google.protobuf.Duration
-	7,  // 8: kratos.api.Data.Redis.read_timeout:type_name -> google.protobuf.Duration
-	7,  // 9: kratos.api.Data.Redis.write_timeout:type_name -> google.protobuf.Duration
-	10, // [10:10] is the sub-list for method output_type
-	10, // [10:10] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	5,  // 4: kratos.api.Server.rabbitmq:type_name -> kratos.api.Server.RabbitMQ
+	6,  // 5: kratos.api.Server.ws:type_name -> kratos.api.Server.Websocket
+	7,  // 6: kratos.api.Server.mqtt:type_name -> kratos.api.Server.MQTT
+	8,  // 7: kratos.api.Data.database:type_name -> kratos.api.Data.Database
+	9,  // 8: kratos.api.Data.redis:type_name -> kratos.api.Data.Redis
+	10, // 9: kratos.api.Server.HTTP.timeout:type_name -> google.protobuf.Duration
+	10, // 10: kratos.api.Server.GRPC.timeout:type_name -> google.protobuf.Duration
+	10, // 11: kratos.api.Server.Websocket.timeout:type_name -> google.protobuf.Duration
+	10, // 12: kratos.api.Data.Redis.read_timeout:type_name -> google.protobuf.Duration
+	10, // 13: kratos.api.Data.Redis.write_timeout:type_name -> google.protobuf.Duration
+	14, // [14:14] is the sub-list for method output_type
+	14, // [14:14] is the sub-list for method input_type
+	14, // [14:14] is the sub-list for extension type_name
+	14, // [14:14] is the sub-list for extension extendee
+	0,  // [0:14] is the sub-list for field type_name
 }
 
 func init() { file_conf_conf_proto_init() }
@@ -502,7 +692,7 @@ func file_conf_conf_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_conf_conf_proto_rawDesc), len(file_conf_conf_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

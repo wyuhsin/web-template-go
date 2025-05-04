@@ -30,10 +30,13 @@ func wireApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (*
 	}
 	greeterRepo := data.NewGreeterRepo(dataData, logger)
 	greeterUsecase := biz.NewGreeterUsecase(greeterRepo, logger)
-	greeterService := service.NewGreeterService(greeterUsecase)
-	grpcServer := server.NewGRPCServer(confServer, greeterService, logger)
-	httpServer := server.NewHTTPServer(confServer, greeterService, logger)
-	app := newApp(logger, grpcServer, httpServer)
+	greeterService := service.NewGreeterService(logger, greeterUsecase)
+	grpcServer := server.NewGRPCServer(confServer, logger, greeterService)
+	httpServer := server.NewHTTPServer(confServer, logger, greeterService)
+	rabbitmqServer := server.NewRabbitMQServer(confServer, logger, greeterService)
+	mqttServer := server.NewMQTTServer(confServer, logger, greeterService)
+	websocketServer := server.NewWebsocketServer(confServer, logger, greeterService)
+	app := newApp(logger, grpcServer, httpServer, rabbitmqServer, mqttServer, websocketServer)
 	return app, func() {
 		cleanup()
 	}, nil

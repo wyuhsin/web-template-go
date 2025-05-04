@@ -4,6 +4,9 @@ import (
 	"flag"
 	"os"
 
+	"github.com/tx7do/kratos-transport/transport/mqtt"
+	"github.com/tx7do/kratos-transport/transport/rabbitmq"
+	"github.com/tx7do/kratos-transport/transport/websocket"
 	"github.com/wyuhsin/web-template-go/internal/conf"
 
 	"github.com/go-kratos/kratos/v2"
@@ -33,7 +36,14 @@ func init() {
 	flag.StringVar(&flagconf, "conf", "../../configs", "config path, eg: -conf config.yaml")
 }
 
-func newApp(logger log.Logger, gs *grpc.Server, hs *http.Server) *kratos.App {
+func newApp(
+	logger log.Logger,
+	gs *grpc.Server,
+	hs *http.Server,
+	rs *rabbitmq.Server,
+	ms *mqtt.Server,
+	ws *websocket.Server,
+) *kratos.App {
 	return kratos.New(
 		kratos.ID(id),
 		kratos.Name(Name),
@@ -43,6 +53,9 @@ func newApp(logger log.Logger, gs *grpc.Server, hs *http.Server) *kratos.App {
 		kratos.Server(
 			gs,
 			hs,
+			rs,
+			ms,
+			ws,
 		),
 	)
 }
